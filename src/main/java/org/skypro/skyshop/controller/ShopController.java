@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ShopController {
 
-  private final StorageService storageService ;
+  private final StorageService storageService;
+
   //Dependency Injection: Контроллер теперь получает StorageService
   // через конструктор с аннотацией @Autowired,
   // что позволяет Spring управлять зависимостями.
@@ -23,20 +24,12 @@ public class ShopController {
 
   @GetMapping("/products")
   public Collection<Product> getAllProducts() {
-//    StorageService storageService = new StorageService();
     return storageService.getAllProducts();
   }
 
   @GetMapping("/articles")
   public Collection<Article> getAllArticles() {
-  //  StorageService storageService = new StorageService();
     return storageService.getAllArticles();
   }
 
-  @Override
-  public String toString() {
-    return "ShopController{" +
-        "storageService=" + storageService +
-        '}';
-  }
 }

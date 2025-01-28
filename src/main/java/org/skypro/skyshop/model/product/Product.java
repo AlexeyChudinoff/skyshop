@@ -1,5 +1,6 @@
 package org.skypro.skyshop.model.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import java.util.UUID;
 import org.skypro.skyshop.model.search.Searchable;
@@ -18,11 +19,11 @@ public abstract class Product implements Searchable, Comparable {
     this.nameProduct = nameProduct;
     this.id = getId();
   }
-
+  @JsonIgnore
   public abstract boolean isSpecial();
-
+  @JsonIgnore// чтобы они не выводились
   public abstract int getCostProduct();
-
+  @JsonIgnore
   public String getNameProduct() {
     return nameProduct;
   }

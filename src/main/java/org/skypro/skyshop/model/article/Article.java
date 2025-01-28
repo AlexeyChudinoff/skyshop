@@ -1,9 +1,9 @@
 package org.skypro.skyshop.model.article;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import java.util.UUID;
 import org.skypro.skyshop.model.search.Searchable;
-//import org.skypro.skyshop.searchProduct.Searchable;
 
 public class Article implements Searchable, Comparable {
 
@@ -23,11 +23,11 @@ public class Article implements Searchable, Comparable {
         "Название статьи = " + (nameArticle != null ? nameArticle : "null") +
         " , Текст статьи = " + (textArticle != null ? textArticle : "null");
   }
-
+  @JsonIgnore// чтобы они не выводились
   public String getTextArticle() {
     return textArticle;
   }
-
+  @JsonIgnore
   public String getNameArticle() {
     return nameArticle;
   }

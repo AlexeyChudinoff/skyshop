@@ -12,7 +12,8 @@ import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
 import org.springframework.stereotype.Service;
-//чтобы Spring мог зарегистрировать его как управляемый объект
+
+//@Service чтобы Spring мог зарегистрировать его как управляемый объект
 // и предоставлять этот класс другим классам
 @Service
 
@@ -20,8 +21,6 @@ public class StorageService {
 
   private final Map<UUID, Product> storageProduct;
   private final Map<UUID, Article> storageArticle;
-//  public Collection<Product> getAllProducts;
-//  public Collection<Article> getAllArticles;
 
   public StorageService() {
     this.storageArticle = new HashMap<>();
@@ -30,16 +29,22 @@ public class StorageService {
   }
 
   private void greatingRepository() {
-    storageArticle.put(UUID.randomUUID(),new Article(UUID.randomUUID(), "articl1", "Инструкция к article1"));
-    storageArticle.put(UUID.randomUUID(),new Article(UUID.randomUUID(), "articl2", "Инструкция к article2"));
-    storageArticle.put(UUID.randomUUID(),new Article(UUID.randomUUID(), "articl3", "Инструкция к article3"));
-    storageArticle.put(UUID.randomUUID(),new Article(UUID.randomUUID(), "articl4", "Инструкция к article4"));
-    storageProduct.put(UUID.randomUUID(), new FixPriceProduct(UUID.randomUUID(),"Шило"));
-    storageProduct.put(UUID.randomUUID(), new FixPriceProduct(UUID.randomUUID(),"Водичка"));
-    storageProduct.put(UUID.randomUUID(), new DiscountedProduct(UUID.randomUUID(),"Еда", 800, 50));
-    storageProduct.put(UUID.randomUUID(), new DiscountedProduct(UUID.randomUUID(),"Мыло", 600, 50));
-    storageProduct.put(UUID.randomUUID(), new SimpleProduct(UUID.randomUUID(),"Сало", 300));
-    storageProduct.put(UUID.randomUUID(), new SimpleProduct(UUID.randomUUID(),"Сало Сало Сало", 300));
+    storageArticle.put(UUID.randomUUID(),
+        new Article(UUID.randomUUID(), "articl1", "Инструкция к article1"));
+    storageArticle.put(UUID.randomUUID(),
+        new Article(UUID.randomUUID(), "articl2", "Инструкция к article2"));
+    storageArticle.put(UUID.randomUUID(),
+        new Article(UUID.randomUUID(), "articl3", "Инструкция к article3"));
+    storageArticle.put(UUID.randomUUID(),
+        new Article(UUID.randomUUID(), "articl4", "Инструкция к article4"));
+    storageProduct.put(UUID.randomUUID(), new FixPriceProduct(UUID.randomUUID(), "Шило"));
+    storageProduct.put(UUID.randomUUID(), new FixPriceProduct(UUID.randomUUID(), "Водичка"));
+    storageProduct.put(UUID.randomUUID(), new DiscountedProduct(UUID.randomUUID(), "Еда", 800, 50));
+    storageProduct.put(UUID.randomUUID(),
+        new DiscountedProduct(UUID.randomUUID(), "Мыло", 600, 50));
+    storageProduct.put(UUID.randomUUID(), new SimpleProduct(UUID.randomUUID(), "Сало", 300));
+    storageProduct.put(UUID.randomUUID(),
+        new SimpleProduct(UUID.randomUUID(), "Сало Сало Сало", 300));
   }
 
   public Collection<Article> getAllArticles() {
@@ -50,11 +55,4 @@ public class StorageService {
     return storageProduct.values();
   }
 
-  @Override
-  public String toString() {
-    return "StorageService{" +
-        "storageArticle=" + storageArticle +
-        ", storageProduct=" + storageProduct +
-        '}';
-  }
 }
