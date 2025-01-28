@@ -14,12 +14,13 @@ import org.skypro.skyshop.model.product.SimpleProduct;
 import org.springframework.stereotype.Service;
 
 @Service
+
 public class StorageService {
 
   private final Map<UUID, Product> storageProduct;
   private final Map<UUID, Article> storageArticle;
-  public Collection<Product> getAllProducts;
-  public Collection<Article> getAllArticles;
+//  public Collection<Product> getAllProducts;
+//  public Collection<Article> getAllArticles;
 
   public StorageService() {
     this.storageArticle = new HashMap<>();
