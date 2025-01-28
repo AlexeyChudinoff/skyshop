@@ -23,13 +23,20 @@ public class Article implements Searchable, Comparable {
         "Название статьи = " + (nameArticle != null ? nameArticle : "null") +
         " , Текст статьи = " + (textArticle != null ? textArticle : "null");
   }
+
   @JsonIgnore// чтобы они не выводились
   public String getTextArticle() {
     return textArticle;
   }
+
   @JsonIgnore
   public String getNameArticle() {
     return nameArticle;
+  }
+
+  @Override
+  public UUID getId() {
+    return id;
   }
 
   @Override
@@ -40,11 +47,6 @@ public class Article implements Searchable, Comparable {
   @Override
   public String searchTipContent() {
     return "ARTICLE";
-  }
-
-  @Override
-  public UUID getId() {
-    return id;
   }
 
   @Override
