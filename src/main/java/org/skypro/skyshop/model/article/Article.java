@@ -7,23 +7,29 @@ import org.skypro.skyshop.model.search.Searchable;
 
 public class Article implements Searchable, Comparable {
 
-
-
   private final String nameArticle;
   private final String textArticle;
   private final UUID id;
 
   public Article(UUID id, String nameArticle, String textArticle) {
+    this.id = id;
     this.nameArticle = nameArticle;
     this.textArticle = textArticle;
-    this.id = id;
   }
 
   @Override
   public String toString() {
-    return "Название статьи = " + (nameArticle != null ? nameArticle : "null") +
-        " , Текст статьи = " + (textArticle != null ? textArticle : "null") +
-        " UUID : " + id;
+    return " UUID : " + id +
+        "Название статьи = " + (nameArticle != null ? nameArticle : "null") +
+        " , Текст статьи = " + (textArticle != null ? textArticle : "null");
+  }
+
+  public String getTextArticle() {
+    return textArticle;
+  }
+
+  public String getNameArticle() {
+    return nameArticle;
   }
 
   @Override

@@ -33,5 +33,10 @@ public class ShopController {
     return storageService.getAllArticles();
   }
 
-
+  @Override
+  public String toString() {
+    return "ShopController{" +
+        "storageService=" + storageService +
+        '}';
+  }
 }

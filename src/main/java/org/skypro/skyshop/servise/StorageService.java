@@ -12,7 +12,8 @@ import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
 import org.springframework.stereotype.Service;
-
+//чтобы Spring мог зарегистрировать его как управляемый объект
+// и предоставлять этот класс другим классам
 @Service
 
 public class StorageService {
@@ -49,8 +50,11 @@ public class StorageService {
     return storageProduct.values();
   }
 
-
-
-
-
+  @Override
+  public String toString() {
+    return "StorageService{" +
+        "storageArticle=" + storageArticle +
+        ", storageProduct=" + storageProduct +
+        '}';
+  }
 }
