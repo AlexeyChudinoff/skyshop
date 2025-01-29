@@ -5,12 +5,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.DiscountedProduct;
 import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
+import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
 
 //@Service чтобы Spring мог зарегистрировать его как управляемый объект
@@ -55,4 +57,20 @@ public class StorageService {
     return storageProduct.values();
   }
 
+  public Collection<Searchable> getAllCollection() {
+    List<Searchable> allCollection = new ArrayList<>();
+    allCollection.addAll(storageArticle.values());
+    allCollection.addAll(storageProduct.values());
+    return allCollection;
+  }
+
+
+
+  public Map<UUID, Article> getStorageArticle() {
+    return storageArticle;
+  }
+
+  public Map<UUID, Product> getStorageProduct() {
+    return storageProduct;
+  }
 }

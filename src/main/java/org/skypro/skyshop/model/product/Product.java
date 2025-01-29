@@ -21,7 +21,7 @@ public abstract class Product implements Searchable, Comparable {
   }
   @JsonIgnore
   public abstract boolean isSpecial();
-  @JsonIgnore// чтобы они не выводились
+  @JsonIgnore// чтобы они не выводились в браузере
   public abstract int getCostProduct();
   @JsonIgnore
   public String getNameProduct() {

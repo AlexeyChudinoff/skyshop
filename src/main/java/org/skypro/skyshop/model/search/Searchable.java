@@ -1,5 +1,6 @@
 package org.skypro.skyshop.model.search;
 
+import java.util.Collection;
 import java.util.UUID;
 
 public interface Searchable {
@@ -8,16 +9,13 @@ public interface Searchable {
 
   String searchTipContent();
 
-  public UUID getId();
+  UUID getId();
 
   // вместо toString
   default void getStringRepresentation() {
     System.out.println("Имя объекта: " + searchTerm() + " ;  " +
         " тип объекта: " + searchTipContent());
   }
-
-
-
 
 
 }
