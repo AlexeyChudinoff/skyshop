@@ -5,12 +5,10 @@ import java.util.UUID;
 public class FixPriceProduct extends Product {
 
   static final int FIX_PRICE_PRODUCT = 500;
-  private final UUID id;
 
   public FixPriceProduct(UUID id, String nameProduct) {
-    super(nameProduct);
-    this.id = id;
-  }
+    super(nameProduct, id);
+     }
 
   public int getCostProduct() {
     return FIX_PRICE_PRODUCT;
@@ -26,8 +24,5 @@ public class FixPriceProduct extends Product {
     return true;
   }
 
-  @Override
-  public UUID getId() {
-    return id;
-  }
-}
+
+}//

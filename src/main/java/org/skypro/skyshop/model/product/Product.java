@@ -4,29 +4,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import java.util.UUID;
 import org.skypro.skyshop.model.search.Searchable;
-//import org.skypro.skyshop.searchProduct.Searchable;
+
 
 public abstract class Product implements Searchable, Comparable {
 
   private final String nameProduct;
   private final UUID id;
 
-  public Product(String nameProduct) throws IllegalArgumentException {
+  public Product(String nameProduct, UUID id) throws IllegalArgumentException {
     if (nameProduct.isBlank()) {
       throw new IllegalArgumentException(
           ANSI_GREEN + "ВНИМАНИЕ ! Нет имени продукта !" + ANSI_RESET);
     }
     this.nameProduct = nameProduct;
-    this.id = getId();
+    this.id = id;
   }
   @JsonIgnore
   public abstract boolean isSpecial();
+
   @JsonIgnore// чтобы они не выводились в браузере
   public abstract int getCostProduct();
   @JsonIgnore
   public String getNameProduct() {
     return nameProduct;
   }
+  @Override
+  public UUID getId() {
+    return id; }
 
   @Override
   public String toString() {
@@ -44,9 +48,6 @@ public abstract class Product implements Searchable, Comparable {
   public String searchTipContent() {
     return "PRODUCT";
   }
-
-  @Override
-  public UUID getId() { return id; }
 
   @Override
   public boolean equals(Object o) {

@@ -5,12 +5,12 @@ import java.util.UUID;
 public class SimpleProduct extends Product {
 
   int costSimpleProduct;
-  private final UUID id;
+  //private final UUID id;
 
   public SimpleProduct(UUID id, String nameProduct, int costSimpleProduct)
       throws IllegalArgumentException {
-    super(nameProduct);
-    this.id = id;
+    super(nameProduct, id);
+    //this.id = id;
 
     if (costSimpleProduct <= 0) {
       throw new IllegalArgumentException(
@@ -30,10 +30,10 @@ public class SimpleProduct extends Product {
         " , цена =  " + costSimpleProduct;
   }
 
-  @Override
-  public UUID getId() {
-    return id;
-  }
+//  @Override
+//  public UUID getId() {
+//    return id;
+//  }
 
   public boolean isSpecial() {
     return false;
