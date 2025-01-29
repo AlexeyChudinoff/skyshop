@@ -1,12 +1,12 @@
 package org.skypro.skyshop.servise;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
-import javax.naming.directory.SearchResult;
-import org.springframework.context.annotation.Bean;
+//import javax.naming.directory.SearchResult;
+import  org.skypro.skyshop.model.search.SearchResult;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class SearchService {
@@ -21,14 +21,12 @@ public class SearchService {
     return storageService;
   }
 
-  public Collection <SearchResult> search (String searchName) {
-    List<SearchResult> searchResultList = new ArrayList<>();
-    searchResultList = storageService.getAllCollection()
+  public Collection<SearchResult> search (String searchName) {
+    return storageService.getAllCollection()
         .stream()
-        .filter(result -> result.searchTerm().contains(searchName))
+        .filter(searchable -> searchable.searchTerm().contains(searchName))
+        .map(SearchResult::fromSearchable)
         .collect(Collectors.toList());
-
-    return searchResultList;
   }
 
 

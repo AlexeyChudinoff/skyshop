@@ -64,8 +64,6 @@ public class StorageService {
     return allCollection;
   }
 
-
-
   public Map<UUID, Article> getStorageArticle() {
     return storageArticle;
   }

@@ -1,9 +1,8 @@
 package org.skypro.skyshop.model.search;
 
 import java.util.UUID;
-import org.springframework.context.annotation.EnableMBeanExport;
 
-final class SearchResult /*implements Searchable*/ {
+public final class SearchResult  {
 
   final UUID id;
   final String name;
@@ -26,7 +25,7 @@ final class SearchResult /*implements Searchable*/ {
   public String getName() {
     return name;
   }
-
+//  принимает Searchable а выдает SearchResult
   public static SearchResult fromSearchable(Searchable searchable) {
     return new SearchResult (searchable.searchTipContent(), searchable.getId(),
         searchable.searchTerm());
