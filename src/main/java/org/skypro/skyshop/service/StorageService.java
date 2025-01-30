@@ -1,10 +1,11 @@
-package org.skypro.skyshop.servise;
+package org.skypro.skyshop.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.DiscountedProduct;
@@ -27,6 +28,10 @@ public class StorageService {
     this.storageArticle = new HashMap<>();
     this.storageProduct = new HashMap<>();
     greatingRepository();
+  }
+
+  public Optional<Product> getProductById(UUID id) {;
+    return Optional.ofNullable(availableProducts.get(id));
   }
 
   private void greatingRepository() {

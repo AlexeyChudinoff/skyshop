@@ -1,9 +1,8 @@
-package org.skypro.skyshop.servise;
+package org.skypro.skyshop.service;
 
 
 import java.util.Collection;
 import java.util.stream.Collectors;
-//import javax.naming.directory.SearchResult;
 import  org.skypro.skyshop.model.search.SearchResult;
 import org.springframework.stereotype.Service;
 
