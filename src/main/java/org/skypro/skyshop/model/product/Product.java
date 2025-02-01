@@ -13,8 +13,7 @@ public abstract class Product implements Searchable, Comparable {
 
   public Product(String nameProduct, UUID id) throws IllegalArgumentException {
     if (nameProduct.isBlank()) {
-      throw new IllegalArgumentException(
-          ANSI_GREEN + "ВНИМАНИЕ ! Нет имени продукта !" + ANSI_RESET);
+      throw new IllegalArgumentException("ВНИМАНИЕ ! Нет имени продукта !");
     }
     this.nameProduct = nameProduct;
     this.id = id;
@@ -23,7 +22,7 @@ public abstract class Product implements Searchable, Comparable {
   public abstract boolean isSpecial();
 
   @JsonIgnore// чтобы они не выводились в браузере
-  public abstract int getCostProduct();
+  public abstract int getPrice();
   @JsonIgnore
   public String getNameProduct() {
     return nameProduct;
@@ -36,7 +35,7 @@ public abstract class Product implements Searchable, Comparable {
   public String toString() {
     return "Product- имя продукта : " + (nameProduct != null ? nameProduct : "null")
         + " ;  = цена =  "
-        + getCostProduct();
+        + getPrice();
   }
 
   @Override
@@ -80,13 +79,5 @@ public abstract class Product implements Searchable, Comparable {
     }
     throw new IllegalArgumentException("Объект не является Product");
   }
-
-  public static final String ANSI_RESET = "\u001B[0m";
-  public static final String ANSI_RED = "\u001B[31m";
-  public static final String ANSI_GREEN = "\u001B[32m";
-  public static final String ANSI_YELLOW = "\u001B[33m";
-  public static final String ANSI_BLUE = "\u001B[34m";
-
-  //ANSI_GREEN + "ВНИМАНИЕ !" + ANSI_RESET +
 
 }

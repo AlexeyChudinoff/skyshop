@@ -30,7 +30,7 @@ public class DiscountedProduct extends Product {
   }
 
   @Override
-  public int getCostProduct() {
+  public int getPrice() {
     return costAfterDiscount;
   }
 

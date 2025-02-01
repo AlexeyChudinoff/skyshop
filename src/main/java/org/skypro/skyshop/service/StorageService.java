@@ -2,6 +2,7 @@ package org.skypro.skyshop.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Service;
 //@Service чтобы Spring мог зарегистрировать его как управляемый объект
 // и предоставлять этот класс другим классам
 @Service
-
 public class StorageService {
 
   private final Map<UUID, Product> storageProduct;
@@ -30,8 +30,8 @@ public class StorageService {
     greatingRepository();
   }
 
-  public Optional<Product> getProductById(UUID id) {;
-    return Optional.ofNullable(availableProducts.get(id));
+  public Optional<Product> getProductById(UUID id) {
+    return Optional.ofNullable(storageProduct.get(id));
   }
 
   private void greatingRepository() {
@@ -58,11 +58,11 @@ public class StorageService {
   }
 
   public Collection<Article> getAllArticles() {
-    return storageArticle.values();
+    return Collections.unmodifiableCollection(storageArticle.values());
   }
 
   public Collection<Product> getAllProducts() {
-    return storageProduct.values();
+    return Collections.unmodifiableCollection(storageProduct.values());
   }
 
   public Collection<Searchable> getAllCollection() {
@@ -79,4 +79,6 @@ public class StorageService {
   public Map<UUID, Product> getStorageProduct() {
     return storageProduct;
   }
-}
+
+
+}//

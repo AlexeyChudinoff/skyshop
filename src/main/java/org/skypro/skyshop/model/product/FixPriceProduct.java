@@ -10,7 +10,7 @@ public class FixPriceProduct extends Product {
     super(nameProduct, id);
      }
 
-  public int getCostProduct() {
+  public int getPrice() {
     return FIX_PRICE_PRODUCT;
   }
 

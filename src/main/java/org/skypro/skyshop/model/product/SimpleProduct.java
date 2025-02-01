@@ -20,7 +20,7 @@ public class SimpleProduct extends Product {
   }
 
   @Override
-  public int getCostProduct() {
+  public int getPrice() {
     return costSimpleProduct;
   }
 

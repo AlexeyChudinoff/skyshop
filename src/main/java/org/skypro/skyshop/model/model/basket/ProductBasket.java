@@ -4,28 +4,25 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
-
+@Component
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ProductBasket {
 
   private final Map<UUID, Integer> productBasket = new HashMap<>();
 
-  public ProductBasket() {
-    // Конструктор по умолчанию, если нужно инициализировать что-то
-  }
-
-  public void addProduct(UUID uuid, Integer quantity) {
-    if (uuid == null || quantity == null || quantity <= 0) {
+  public void addProduct(UUID productId, Integer quantity) {
+    if (productId == null || quantity == null || quantity <= 0) {
       throw new IllegalArgumentException("UUID и количество должны быть ненулевыми" + " и положительными.");
     }
-    productBasket.put(uuid, productBasket.getOrDefault(uuid, 0) + quantity);
+    productBasket.merge(productId, quantity, Integer::sum);
   }
 
   public Map<UUID, Integer> getAllProducts() {
-    Map<UUID, Integer> unmodifiableMap = new HashMap<>(productBasket);
-    unmodifiableMap = Collections.unmodifiableMap(unmodifiableMap);
-    return unmodifiableMap;
+    return Collections.unmodifiableMap(new HashMap<>(productBasket));
   }
-
 
 }//
