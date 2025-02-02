@@ -16,8 +16,7 @@ import org.skypro.skyshop.model.product.SimpleProduct;
 import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
 
-//@Service чтобы Spring мог зарегистрировать его как управляемый объект
-// и предоставлять этот класс другим классам
+
 @Service
 public class StorageService {
 
@@ -30,12 +29,11 @@ public class StorageService {
     greatingRepository();
   }
 
-
   public Optional<Product> getProductById(UUID id) {
     return Optional.ofNullable(storageProduct.get(id));
   }
 
- private void greatingRepository() {
+  private void greatingRepository() {
     UUID article1Id = UUID.randomUUID();
     UUID article2Id = UUID.randomUUID();
     UUID article3Id = UUID.randomUUID();

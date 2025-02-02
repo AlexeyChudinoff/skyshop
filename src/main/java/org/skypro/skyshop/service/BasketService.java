@@ -24,13 +24,12 @@ public class BasketService {
     if (id == null) {
       throw new IllegalArgumentException("ID продукта не может быть null");
     }
-    System.out.println("Поиск продукта с ID: " + id);
     Optional<Product> optionalProduct = storageService.getProductById(id);
-
     if (!optionalProduct.isPresent()) {
       throw new IllegalArgumentException("Продукт с ID " + id + " не найден");
     }
     productBasket.addProduct(id);
+
   }
 
   public UserBasket getUserBasket() {
@@ -45,5 +44,4 @@ public class BasketService {
     return new UserBasket(basketItems);
   }
 
-
-}
+}//

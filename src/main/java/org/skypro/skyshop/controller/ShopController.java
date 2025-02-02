@@ -3,7 +3,6 @@ package org.skypro.skyshop.controller;
 import java.util.Collection;
 import java.util.UUID;
 import org.skypro.skyshop.model.article.Article;
-import org.skypro.skyshop.model.model.basket.ProductBasket;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.search.SearchResult;
 import org.skypro.skyshop.model.search.Searchable;
@@ -16,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,9 +25,6 @@ public class ShopController {
   private final SearchService searchService;
   private final BasketService basketService;
 
-  //Dependency Injection: Контроллер теперь получает StorageService
-  // через конструктор с аннотацией @Autowired,
-  // что позволяет Spring управлять зависимостями.
   @Autowired
   public ShopController(StorageService storageService, SearchService searchService,
       BasketService basketService) {
@@ -49,7 +44,7 @@ public class ShopController {
   }
 
   @GetMapping("/allCollection")
-  public Collection <Searchable> getAllCollection() {
+  public Collection<Searchable> getAllCollection() {
     return storageService.getAllCollection();
   }
 
@@ -60,14 +55,14 @@ public class ShopController {
   }
 
   @GetMapping("/basket/{id}")
-public ResponseEntity<String> addProduct(@PathVariable("id") UUID id) {
-  try {
-    basketService.addProductById(id);
-    return ResponseEntity.ok("Продукт успешно добавлен в корзину");
-  } catch (IllegalArgumentException e) {
-    return ResponseEntity.badRequest().body(e.getMessage());
+  public ResponseEntity<String> addProduct(@PathVariable("id") UUID id) {
+    try {
+      basketService.addProductById(id);
+      return ResponseEntity.ok("Продукт успешно добавлен в корзину");
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
   }
-}
 
   @GetMapping("/basket")
   public ResponseEntity<UserBasket> getUserBasket() {
