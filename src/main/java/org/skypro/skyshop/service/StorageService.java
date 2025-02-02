@@ -30,37 +30,43 @@ public class StorageService {
     greatingRepository();
   }
 
-  public Optional<Product> getProductById(UUID id) {
-    return getAllProducts()
-        .stream()
-        .filter(product -> product.getId().equals(id))
-        .findFirst();
-  }
-//  public Optional<Product> getProductById(UUID id) {
-//    return Optional.ofNullable(storageProduct.get(id));
-//  }
 
-  private void greatingRepository() {
-    storageArticle.put(UUID.randomUUID(),
-        new Article(UUID.randomUUID(), "articl1", "Инструкция к article1"));
-    storageArticle.put(UUID.randomUUID(),
-        new Article(UUID.randomUUID(), "articl2", "Инструкция к article2"));
-    storageArticle.put(UUID.randomUUID(),
-        new Article(UUID.randomUUID(), "articl3", "Инструкция к article3"));
-    storageArticle.put(UUID.randomUUID(),
-        new Article(UUID.randomUUID(), "articl4", "Инструкция к article4"));
-    storageProduct.put(UUID.randomUUID(),
-        new FixPriceProduct(UUID.randomUUID(), "Шило"));
-    storageProduct.put(UUID.randomUUID(),
-        new FixPriceProduct(UUID.randomUUID(), "Водичка"));
-    storageProduct.put(UUID.randomUUID(),
-        new DiscountedProduct(UUID.randomUUID(), "Еда", 800, 50));
-    storageProduct.put(UUID.randomUUID(),
-        new DiscountedProduct(UUID.randomUUID(), "Мыло", 600, 50));
-    storageProduct.put(UUID.randomUUID(),
-        new SimpleProduct(UUID.randomUUID(), "Сало", 300));
-    storageProduct.put(UUID.randomUUID(),
-        new SimpleProduct(UUID.randomUUID(), "Сало Сало Сало", 300));
+  public Optional<Product> getProductById(UUID id) {
+    return Optional.ofNullable(storageProduct.get(id));
+  }
+
+ private void greatingRepository() {
+    UUID article1Id = UUID.randomUUID();
+    UUID article2Id = UUID.randomUUID();
+    UUID article3Id = UUID.randomUUID();
+    UUID article4Id = UUID.randomUUID();
+    UUID product1Id = UUID.randomUUID();
+    UUID product2Id = UUID.randomUUID();
+    UUID product3Id = UUID.randomUUID();
+    UUID product4Id = UUID.randomUUID();
+    UUID product5Id = UUID.randomUUID();
+    UUID product6Id = UUID.randomUUID();
+
+    storageArticle.put(article1Id,
+        new Article(article1Id, "articl1", "Инструкция к article1"));
+    storageArticle.put(article2Id,
+        new Article(article2Id, "articl2", "Инструкция к article2"));
+    storageArticle.put(article3Id,
+        new Article(article3Id, "articl3", "Инструкция к article3"));
+    storageArticle.put(article4Id,
+        new Article(article4Id, "articl4", "Инструкция к article4"));
+    storageProduct.put(product1Id,
+        new FixPriceProduct(product1Id, "Шило"));
+    storageProduct.put(product2Id,
+        new FixPriceProduct(product2Id, "Водичка"));
+    storageProduct.put(product3Id,
+        new DiscountedProduct(product3Id, "Еда", 800, 50));
+    storageProduct.put(product4Id,
+        new DiscountedProduct(product4Id, "Мыло", 600, 50));
+    storageProduct.put(product5Id,
+        new SimpleProduct(product5Id, "Сало", 300));
+    storageProduct.put(product6Id,
+        new SimpleProduct(product6Id, "Сало Сало Сало", 300));
   }
 
   public Collection<Article> getAllArticles() {

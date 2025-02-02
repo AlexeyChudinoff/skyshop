@@ -3,8 +3,10 @@ package org.skypro.skyshop.controller;
 import java.util.Collection;
 import java.util.UUID;
 import org.skypro.skyshop.model.article.Article;
+import org.skypro.skyshop.model.model.basket.ProductBasket;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.search.SearchResult;
+import org.skypro.skyshop.model.search.Searchable;
 import org.skypro.skyshop.service.BasketService;
 import org.skypro.skyshop.service.SearchService;
 import org.skypro.skyshop.service.StorageService;
@@ -46,34 +48,44 @@ public class ShopController {
     return storageService.getAllArticles();
   }
 
+  @GetMapping("/allCollection")
+  public Collection <Searchable> getAllCollection() {
+    return storageService.getAllCollection();
+  }
+
   //@RequestParam т.е должен быть получен из URL-запроса (например: /search?pattern=Сало)
   @GetMapping("/search")
   public Collection<SearchResult> getSearchList(@RequestParam String pattern) {
     return searchService.search(pattern);
   }
 
-  // PathVariable — специальный аргумент, похожий на параметр запроса.
-// Но в этом случае в качестве аргумента мы выделяем часть URL
-  @PostMapping("/basket/{id}")
-  public ResponseEntity<String> addProduct(@PathVariable("id") UUID id) {
-    try {
-      basketService.addProductById(id);
-      return ResponseEntity.ok("Продукт успешно добавлен");
-    } catch (IllegalArgumentException e) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    }
+  @GetMapping("/basket/{id}")
+public ResponseEntity<String> addProduct(@PathVariable("id") UUID id) {
+  try {
+    basketService.addProductById(id);
+    return ResponseEntity.ok("Продукт успешно добавлен в корзину");
+  } catch (IllegalArgumentException e) {
+    return ResponseEntity.badRequest().body(e.getMessage());
   }
-
-
-//  @GetMapping("/basket/{id}")
-//  public String addProduct(@PathVariable("id") UUID id) {
-//    basketService.addProductById(id);
-//    return "Продукт успешно добавлен";
-//  }
+}
 
   @GetMapping("/basket")
-  public UserBasket getUserBasket() {
-    return basketService.getUserBasket();
+  public ResponseEntity<UserBasket> getUserBasket() {
+    UserBasket userBasket = basketService.getUserBasket();
+    if (userBasket.getBasketItems().isEmpty()) {
+      return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content
+    }
+    return ResponseEntity.ok(userBasket); // 200 OK
   }
+
+//  @GetMapping("/basket")
+//  public ResponseEntity<UserBasket> getUserBasket() {
+//    UserBasket userBasket = basketService.getUserBasket();
+//    if (userBasket.getBasketItems().isEmpty()) {
+//      return ResponseEntity.badRequest().body("Корзина пуста");
+//    }
+//    return ResponseEntity.ok(userBasket);
+//  }
+
 
 }//

@@ -3,7 +3,8 @@ package org.skypro.skyshop.service;
 import org.skypro.skyshop.model.product.Product;
 
 
-public class BasketItem {
+
+public final class BasketItem {
 
   private final Product product;
   private final int quantity;
