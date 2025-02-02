@@ -14,11 +14,11 @@ public class ProductBasket {
 
   private final Map<UUID, Integer> productBasket = new HashMap<>();
 
-  public void addProduct(UUID productId, Integer quantity) {
-    if (productId == null || quantity == null || quantity <= 0) {
-      throw new IllegalArgumentException("UUID и количество должны быть ненулевыми" + " и положительными.");
+  public void addProduct(UUID productId) {
+    if (productId == null ) {
+      throw new IllegalArgumentException("UUID должен быть ненулевым" );
     }
-    productBasket.merge(productId, quantity, Integer::sum);
+    productBasket.merge(productId, 1, Integer::sum);
   }
 
   public Map<UUID, Integer> getAllProducts() {

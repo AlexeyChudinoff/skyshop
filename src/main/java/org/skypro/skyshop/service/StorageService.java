@@ -31,8 +31,14 @@ public class StorageService {
   }
 
   public Optional<Product> getProductById(UUID id) {
-    return Optional.ofNullable(storageProduct.get(id));
+    return getAllProducts()
+        .stream()
+        .filter(product -> product.getId().equals(id))
+        .findFirst();
   }
+//  public Optional<Product> getProductById(UUID id) {
+//    return Optional.ofNullable(storageProduct.get(id));
+//  }
 
   private void greatingRepository() {
     storageArticle.put(UUID.randomUUID(),
