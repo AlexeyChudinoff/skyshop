@@ -48,7 +48,6 @@ public class ShopController {
     return storageService.getAllCollection();
   }
 
-  //@RequestParam т.е должен быть получен из URL-запроса (например: /search?pattern=Сало)
   @GetMapping("/search")
   public Collection<SearchResult> getSearchList(@RequestParam String pattern) {
     return searchService.search(pattern);
@@ -56,12 +55,8 @@ public class ShopController {
 
   @GetMapping("/basket/{id}")
   public ResponseEntity<String> addProduct(@PathVariable("id") UUID id) {
-    try {
-      basketService.addProductById(id);
-      return ResponseEntity.ok("Продукт успешно добавлен в корзину");
-    } catch (IllegalArgumentException e) {
-      return ResponseEntity.badRequest().body(e.getMessage());
-    }
+    basketService.addProductById(id);
+    return ResponseEntity.ok("Продукт успешно добавлен в корзину");
   }
 
   @GetMapping("/basket")
@@ -73,14 +68,5 @@ public class ShopController {
     return ResponseEntity.ok(userBasket); // 200 OK
   }
 
-//  @GetMapping("/basket")
-//  public ResponseEntity<UserBasket> getUserBasket() {
-//    UserBasket userBasket = basketService.getUserBasket();
-//    if (userBasket.getBasketItems().isEmpty()) {
-//      return ResponseEntity.badRequest().body("Корзина пуста");
-//    }
-//    return ResponseEntity.ok(userBasket);
-//  }
 
-
-}//
+}
