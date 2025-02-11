@@ -8,16 +8,13 @@ public interface Searchable {
 
   String searchTipContent();
 
-  public UUID getId();
+  UUID getId();
 
   // вместо toString
   default void getStringRepresentation() {
     System.out.println("Имя объекта: " + searchTerm() + " ;  " +
         " тип объекта: " + searchTipContent());
   }
-
-
-
 
 
 }

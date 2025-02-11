@@ -7,12 +7,11 @@ public class DiscountedProduct extends Product {
   private final int baseCost;
   private final int discountBaseCost;
   private final int costAfterDiscount;
-  private final UUID id;
 
-  public DiscountedProduct(UUID id, String nameProduct, int baseCost, int discountBaseCost)
+  public DiscountedProduct(UUID id, String nameProduct,int baseCost,int discountBaseCost)
       throws RuntimeException {
-    super(nameProduct);
-    this.id = id;
+    super(nameProduct, id);
+
     if (baseCost <= 0) {
       throw new IllegalArgumentException(
           ANSI_GREEN + "ВНИМАНИЕ ! Цена продукта меньше нуля !" + ANSI_RESET);
@@ -31,7 +30,7 @@ public class DiscountedProduct extends Product {
   }
 
   @Override
-  public int getCostProduct() {
+  public int getPrice() {
     return costAfterDiscount;
   }
 
@@ -51,11 +50,6 @@ public class DiscountedProduct extends Product {
   public static final String ANSI_GREEN = "\u001B[32m";
   public static final String ANSI_YELLOW = "\u001B[33m";
   public static final String ANSI_BLUE = "\u001B[34m";
-
-  @Override
-  public UUID getId() {
-    return id;
-  }
   //ANSI_GREEN + "ВНИМАНИЕ !" + ANSI_RESET +
 
 }

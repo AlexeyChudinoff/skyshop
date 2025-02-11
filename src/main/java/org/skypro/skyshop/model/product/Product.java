@@ -4,35 +4,38 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import java.util.UUID;
 import org.skypro.skyshop.model.search.Searchable;
-//import org.skypro.skyshop.searchProduct.Searchable;
+
 
 public abstract class Product implements Searchable, Comparable {
 
   private final String nameProduct;
   private final UUID id;
 
-  public Product(String nameProduct) throws IllegalArgumentException {
+  public Product(String nameProduct, UUID id) throws IllegalArgumentException {
     if (nameProduct.isBlank()) {
-      throw new IllegalArgumentException(
-          ANSI_GREEN + "ВНИМАНИЕ ! Нет имени продукта !" + ANSI_RESET);
+      throw new IllegalArgumentException("ВНИМАНИЕ ! Нет имени продукта !");
     }
     this.nameProduct = nameProduct;
-    this.id = getId();
+    this.id = id;
   }
   @JsonIgnore
   public abstract boolean isSpecial();
-  @JsonIgnore// чтобы они не выводились
-  public abstract int getCostProduct();
+
+  @JsonIgnore// чтобы они не выводились в браузере
+  public abstract int getPrice();
   @JsonIgnore
   public String getNameProduct() {
     return nameProduct;
   }
+  @Override
+  public UUID getId() {
+    return id; }
 
   @Override
   public String toString() {
     return "Product- имя продукта : " + (nameProduct != null ? nameProduct : "null")
         + " ;  = цена =  "
-        + getCostProduct();
+        + getPrice();
   }
 
   @Override
@@ -44,9 +47,6 @@ public abstract class Product implements Searchable, Comparable {
   public String searchTipContent() {
     return "PRODUCT";
   }
-
-  @Override
-  public UUID getId() { return id; }
 
   @Override
   public boolean equals(Object o) {
@@ -79,13 +79,5 @@ public abstract class Product implements Searchable, Comparable {
     }
     throw new IllegalArgumentException("Объект не является Product");
   }
-
-  public static final String ANSI_RESET = "\u001B[0m";
-  public static final String ANSI_RED = "\u001B[31m";
-  public static final String ANSI_GREEN = "\u001B[32m";
-  public static final String ANSI_YELLOW = "\u001B[33m";
-  public static final String ANSI_BLUE = "\u001B[34m";
-
-  //ANSI_GREEN + "ВНИМАНИЕ !" + ANSI_RESET +
 
 }
