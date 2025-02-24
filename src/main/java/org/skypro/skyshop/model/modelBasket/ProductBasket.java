@@ -1,4 +1,4 @@
-package org.skypro.skyshop.model.model.basket;
+package org.skypro.skyshop.model.modelBasket;
 
 import java.util.Collections;
 import java.util.HashMap;

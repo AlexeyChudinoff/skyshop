@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.skypro.skyshop.exception.NoSuchProductException;
-import org.skypro.skyshop.model.model.basket.ProductBasket;
+import org.skypro.skyshop.model.modelBasket.ProductBasket;
 import org.skypro.skyshop.model.product.Product;
 import org.springframework.stereotype.Service;
 
