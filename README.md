@@ -1,3 +1,7 @@
+![Java](https://img.shields.io/badge/Java-17+-blue)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.1-green)
+![Maven](https://img.shields.io/badge/Maven-3.6+-orange)
+
 # Skyshop - Интернет-магазин на Spring Boot
 
 ## 📋 Обзор проекта
